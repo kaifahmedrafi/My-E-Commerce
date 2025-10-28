@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaif Ahmed Rafi E-Commerce</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #facc15, #a855f7, #22d3ee, #fb7185);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 400%;
+      animation: gradientMove 6s infinite alternate;
+      text-shadow: 0 0 10px rgba(250, 205, 21, 0.5),
+                   0 0 20px rgba(168, 85, 247, 0.4);
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0%; }
+      100% { background-position: 100%; }
+    }
+
+    .btn-glow {
+      border: 2px solid #facc15;
+      padding: 12px 28px;
+      border-radius: 12px;
+      color: #facc15;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
+    }
+    .btn-glow:hover {
+      color: #000;
+      background: #facc15;
+      box-shadow: 0 0 20px #facc15, 0 0 40px #facc15, 0 0 80px #facc15;
+      transform: scale(1.05);
+    }
+
+    /* Cart Modal */
+    .cart-modal {
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 w-full bg-gray-800/50 backdrop-blur-md z-50">
+  <div class="container mx-auto flex justify-between items-center px-6 py-4 flex-wrap">
+    <h1 class="text-xl font-bold text-purple-400 text-gradient cursor-pointer">KAIF AHMED RAFI</h1>
+    <div class="space-x-6 hidden sm:flex">
+      <a href="#home" class="hover:text-yellow-400">Home</a>
+      <a href="#products" class="hover:text-yellow-400">Products</a>
+      <a href="#about" class="hover:text-yellow-400">About</a>
+      <a href="#contact" class="hover:text-yellow-400">Contact</a>
+      <button id="cart-btn" class="hover:text-yellow-400">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section with Slideshow Background -->
+<header id="home" class="h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+  <!-- Overlay for text readability -->
+  <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+  <!-- Background slideshow -->
+  <div id="slideshow" class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 z-0"></div>
+
+  <!-- Hero content -->
+  <div class="relative z-20">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4">Welcome to My E-Commerce</h1>
+    <p class="text-gray-200 mb-8 max-w-xl">
+                  "We bring you the best [products/category] with quality, style, and convenience."
+    </p>
+    <a href="#products" class="btn-glow">🛍️ Shop Now</a>
+  </div>
+</header>
+
+<script>
+  const images = [
+    'https://www.apple.com/v/iphone/home/cf/images/meta/iphone__cud4q04omsuq_og.png',
+    'https://www.startech.com.bd/image/cache/catalog/drones/dji/neo-fly-more/neo-fly-more-01-500x500.webp',
+    'https://www.applegadgetsbd.com/_next/image?url=https%3A%2F%2Fadminapi.applegadgetsbd.com%2Fstorage%2Fmedia%2Flarge%2FSoundPeats-Capsule3-Pro-Black-a-7715.jpg&w=1920&q=100',
+    'https://www.applegadgetsbd.com/_next/image?url=https%3A%2F%2Fadminapi.applegadgetsbd.com%2Fstorage%2Fmedia%2Flarge%2FJBL-CLIP-5-Ultra-portable-Waterproof-Speaker-Black-3056.jpg&w=1920&q=100',
+    'https://www.startech.com.bd/image/cache/catalog/gaming-console/r36s-retro/r36s-retro-01-500x500.webp',
+    'https://www.startech.com.bd/image/cache/catalog/camera/action-camera/insta360/ace-pro/ace-pro-01-500x500.webp',
+  ];
+
+  let index = 0;
+  const slideshow = document.getElementById('slideshow');
+
+  function changeBackground() {
+    slideshow.style.backgroundImage = `url(${images[index]})`;
+    index = (index + 1) % images.length;
+  }
+
+  changeBackground(); // show first image immediately
+  setInterval(changeBackground, 5000); // change every 5 seconds
+</script>
+
+
+<!-- Products Section -->
+<section id="products" class="py-20 bg-gray-800">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12 text-yellow-400">🛒 Products</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-list">
+      <!-- Product Template -->
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-900 text-center">
+  <h2 class="text-4xl font-bold mb-6 text-purple-400 text-gradient">About Me</h2>
+  <p class="text-gray-400 max-w-2xl mx-auto">"We bring you the best [products/category] with quality, style, and convenience. Our mission is to make shopping simple, reliable, and enjoyable for everyone.".</p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-100 text-gray-900">
+  <h2 class="text-4xl font-bold text-center mb-6 text-gray-800">📬 Contact</h2>
+  <form class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg space-y-4">
+    <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg text-gray-900" required>
+    <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg text-gray-900" required>
+    <textarea rows="5" placeholder="Your Message" class="w-full p-3 border rounded-lg text-gray-900" required></textarea>
+    <button type="submit" class="btn-glow w-full">📨 Send Message</button>
+  </form>
+</section>
+
+<!-- Cart Modal -->
+<div id="cart-modal" class="fixed inset-0 bg-black/70 flex justify-center items-center hidden cart-modal">
+  <div class="bg-gray-800 rounded-2xl p-8 w-96 max-h-[80vh] overflow-y-auto">
+    <h2 class="text-2xl font-bold mb-4 text-yellow-400">Your Cart</h2>
+    <div id="cart-items" class="space-y-4">
+      <!-- Cart Items -->
+    </div>
+    <div class="mt-6 flex justify-between font-bold text-lg">
+      <span>Total:</span>
+      <span id="cart-total">0$</span>
+    </div>
+    <button id="close-cart" class="btn-glow mt-4 w-full">Close</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-6 bg-gray-800 text-center text-gray-400">
+  © 2026 KAIF AHMED RAFI | All Rights Reserved
+</footer>
+
+<!-- JS -->
+<script>
+  // Products Data
+  const products = [
+    {id:1, name:"Wireless Earbuds", price:1250, img:"https://www.applegadgetsbd.com/_next/image?url=https%3A%2F%2Fadminapi.applegadgetsbd.com%2Fstorage%2Fmedia%2Flarge%2FSoundPeats-Capsule3-Pro-Black-a-7715.jpg&w=1920&q=100"},
+    {id:2, name:"JBL CLIP 5 Ultra-portable Waterproof Speaker", price:5800, img:"https://www.applegadgetsbd.com/_next/image?url=https%3A%2F%2Fadminapi.applegadgetsbd.com%2Fstorage%2Fmedia%2Flarge%2FJBL-CLIP-5-Ultra-portable-Waterproof-Speaker-Black-3056.jpg&w=1920&q=100"},
+    {id:3, name:"Apple Watch Series 11", price:30, img:"https://www.applegadgetsbd.com/_next/image?url=https%3A%2F%2Fadminapi.applegadgetsbd.com%2Fstorage%2Fmedia%2Flarge%2FApple-Watch-Series-11-jet-black-3902.jpg&w=1920&q=100"},
+    {id:4, name:"R36S Retro Handheld Gaming Console", price:60, img:"https://www.startech.com.bd/image/cache/catalog/gaming-console/r36s-retro/r36s-retro-01-500x500.webp"},
+    {id:5, name:"DJI Neo Fly More Combo Drone", price:45, img:"https://www.startech.com.bd/image/cache/catalog/drones/dji/neo-fly-more/neo-fly-more-01-500x500.webp"},
+    {id:6, name:"Insta360 Ace Pro 8K Waterproof Action Camera", price:90, img:"https://www.startech.com.bd/image/cache/catalog/camera/action-camera/insta360/ace-pro/ace-pro-01-500x500.webp"},
+  ];
+
+  const productList = document.getElementById("product-list");
+  const cartModal = document.getElementById("cart-modal");
+  const cartItemsDiv = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  const cartCount = document.getElementById("cart-count");
+  let cart = [];
+
+  // Render Products
+  products.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "bg-gray-700 rounded-2xl p-4 text-center transform hover:scale-105 transition";
+    div.innerHTML = `
+      <img src="${p.img}" alt="${p.name}" class="rounded-xl mb-4 w-full">
+      <h3 class="text-xl font-bold mb-2">${p.name}</h3>
+      <p class="mb-2">${p.price}$</p>
+      <button class="btn-glow w-full add-to-cart" data-id="${p.id}">Add to Cart</button>
+    `;
+    productList.appendChild(div);
+  });
+
+  // Add to Cart
+  document.addEventListener("click", e => {
+    if(e.target.classList.contains("add-to-cart")){
+      const id = parseInt(e.target.dataset.id);
+      const prod = products.find(p => p.id === id);
+      cart.push(prod);
+      cartCount.textContent = cart.length;
+      alert(`${prod.name} added to cart!`);
+    }
+  });
+
+  // Open Cart
+  document.getElementById("cart-btn").addEventListener("click", () => {
+    renderCart();
+    cartModal.classList.remove("hidden");
+  });
+
+  // Close Cart
+  document.getElementById("close-cart").addEventListener("click", () => {
+    cartModal.classList.add("hidden");
+  });
+
+  function renderCart(){
+    cartItemsDiv.innerHTML = "";
+    let total = 0;
+    cart.forEach((item, index)=>{
+      total += item.price;
+      const div = document.createElement("div");
+      div.className = "flex justify-between items-center bg-gray-700 p-2 rounded-lg";
+      div.innerHTML = `
+        <span>${item.name} (${item.price}$)</span>
+        <button class="text-red-500 font-bold remove-cart" data-index="${index}">x</button>
+      `;
+      cartItemsDiv.appendChild(div);
+    });
+    cartTotal.textContent = total + "$";
+  }
+
+  document.addEventListener("click", e=>{
+    if(e.target.classList.contains("remove-cart")){
+      const index = parseInt(e.target.dataset.index);
+      cart.splice(index,1);
+      cartCount.textContent = cart.length;
+      renderCart();
+    }
+  });
+</script>
+</body>
+</html>
